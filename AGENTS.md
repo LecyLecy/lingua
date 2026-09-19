@@ -15,6 +15,13 @@ If an instruction conflicts with an official course-criteria document, the offic
 
 The project owner requires the Ponytail and Caveman skills for every AI task. Before each prompt or task, make sure both skills are installed and available through the approved local skill-installation process, then use both skills for that task. If either skill is unavailable, report that fact clearly; never claim that it was used when it was not available.
 
+Required local skill files:
+
+- `$CODEX_HOME/skills/ponytail/SKILL.md`
+- `$CODEX_HOME/skills/caveman/SKILL.md`
+
+For each task, first verify that both files exist and read their instructions. Use Ponytail's pre-implementation gate before code changes and its review pass before completing a code change. Use Caveman's communication rules for chat responses only; write normal prose in code, documentation, commits, and external messages, as its instructions require. If a required skill is missing, use the approved installer to restore it and report the outcome honestly.
+
 ## Product rules that cannot be weakened
 
 - The product name is **Lingua**. Do not rename it to LinguaLive unless the owner asks.
