@@ -1,0 +1,54 @@
+# Secrets and local settings
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python and local tooling
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+env/
+
+# Editors and operating systems
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Data, recordings, models, and generated experiments
+data/raw/
+data/processed/
+data/external/
+audio/
+recordings/
+models/*
+!models/.gitkeep
+checkpoints/
+runs/
+wandb/
+mlruns/
+tensorboard/
+logs/
+*.wav
+*.mp3
+*.flac
+*.m4a
+*.ogg
+*.pt
+*.pth
+*.ckpt
+*.bin
+*.safetensors
+
+# Build outputs
+dist/
+build/
+*.egg-info/
