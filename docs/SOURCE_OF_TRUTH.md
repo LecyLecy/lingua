@@ -11,15 +11,15 @@ Use this page to find the source material that defines the project. Do not rely 
 
 ## Local source files outside this repository
 
-These paths are relative to the `Lingua/` repository root in the shared local workspace.
+These are absolute local paths. The Lingua repository is intentionally stored in `E:\Projects\Lingua`, while the course material remains under `C:\Users\Ideapad Gaming 15\OneDrive\Campus\Materi`.
 
 | Purpose | Relative path | Read when |
 | --- | --- | --- |
-| Current Deep Learning criteria | `../LECTURE/Final Project/Form Submit Final Project COMP6826001.docx` | Planning model, data, experiments, report, or app work. |
-| Deep Learning project notes | `../LECTURE/Final Project/NOTES.md` | Checking previously agreed model and evaluation scope. The old display name LinguaLive is superseded by Lingua in this repo. |
-| Speech Recognition official criteria | `../../Speech_Recognition/LECTURE/Project/20260907160650_FINAL_PROJECT_COMP6822001_Speech_Recognition.docx` | Planning real-time behavior, local inference, user tests, or evaluation. |
-| Speech Recognition project summary | `../../Speech_Recognition/LECTURE/Project/README.md` | Reviewing the original project rationale and validation checklist. |
-| Speech Recognition lab project idea | `../../Speech_Recognition/LAB/Project/IDEA.md` | Reviewing the detailed streaming, model, UI, and evaluation concept. |
+| Current Deep Learning criteria | `C:\Users\Ideapad Gaming 15\OneDrive\Campus\Materi\Deep_Learning\LECTURE\Final Project\Form Submit Final Project COMP6826001.docx` | Planning model, data, experiments, report, or app work. |
+| Deep Learning project notes | `C:\Users\Ideapad Gaming 15\OneDrive\Campus\Materi\Deep_Learning\LECTURE\Final Project\NOTES.md` | Checking previously agreed model and evaluation scope. The old display name LinguaLive is superseded by Lingua in this repo. |
+| Speech Recognition official criteria | `C:\Users\Ideapad Gaming 15\OneDrive\Campus\Materi\Speech_Recognition\LECTURE\Project\20260907160650_FINAL_PROJECT_COMP6822001_Speech_Recognition.docx` | Planning real-time behavior, local inference, user tests, or evaluation. |
+| Speech Recognition project summary | `C:\Users\Ideapad Gaming 15\OneDrive\Campus\Materi\Speech_Recognition\LECTURE\Project\README.md` | Reviewing the original project rationale and validation checklist. |
+| Speech Recognition lab project idea | `C:\Users\Ideapad Gaming 15\OneDrive\Campus\Materi\Speech_Recognition\LAB\Project\IDEA.md` | Reviewing the detailed streaming, model, UI, and evaluation concept. |
 
 ## When sources disagree
 
