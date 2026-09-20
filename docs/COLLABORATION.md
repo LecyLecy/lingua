@@ -11,7 +11,7 @@
 
 ## Starting work
 
-1. Read `AGENTS.md`, `docs/PROJECT_CONTEXT.md`, and the relevant source files in `docs/SOURCE_OF_TRUTH.md`.
+1. Read `AGENTS.md`, `PRD.md`, `ARCHITECTURE-ESSETIALS.md`, `docs/PROJECT_CONTEXT.md`, and relevant source files in `docs/SOURCE_OF_TRUTH.md`.
 2. Fetch the repository and switch to `production`.
 3. Update local `production` from `origin/production`.
 4. Switch to your own branch, or create it from the updated `production` branch.
@@ -41,6 +41,7 @@ git push -u origin teammate-name
 - Inspect `git status` and make sure no secret, model file, dataset, raw recording, or personal feedback is staged.
 - Run the relevant test, lint, or manual real-time verification.
 - Update documentation if scope, configuration, model, data, or UI behavior changed.
+- For scope changes, follow documentation ownership map in `AGENTS.md`; do not leave `PRD.md`, `ARCHITECTURE.md`, and architecture essentials inconsistent.
 - Record experiment provenance when a change affects a metric.
 - Use a descriptive commit message.
 - Request review or at least check the diff carefully before integrating into `production`.

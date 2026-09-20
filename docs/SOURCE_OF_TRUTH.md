@@ -5,7 +5,7 @@ Use this page to find the source material that defines the project. Do not rely 
 ## Priority order
 
 1. Official course criteria documents.
-2. This repository's `docs/PROJECT_CONTEXT.md` for the current agreed Lingua implementation scope.
+2. This repository's `PRD.md`, `ARCHITECTURE.md`, and `docs/PROJECT_CONTEXT.md` for current agreed Lingua scope and implementation direction.
 3. The local course project notes listed below.
 4. README files and task-specific documentation.
 
@@ -25,8 +25,8 @@ These are absolute local paths. The Lingua repository is intentionally stored in
 
 - Official current-year criteria win over older documents.
 - The current project branding is **Lingua**, even if older local notes say LinguaLive.
-- This repository uses Indonesian-English as the required core scope.
-- Do not change the target user, core languages, model direction, or use of external services without documenting the decision and confirming it with the project owner.
+- Indonesian ASR fine-tuning is required core Deep Learning work. Selected multilingual ASR model may expose up to 99 candidates; candidates are not automatically supported languages.
+- Do not change target user, language policy, model direction, or use of external services without documenting decision in `PRD.md` and `ARCHITECTURE.md` and confirming it with project owner.
 
 ## Information that must be recorded before a result is trusted
 

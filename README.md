@@ -4,110 +4,49 @@
 
 # Lingua
 
-### Local Indonesian-English live captions and translation
+### Local real-time multilingual captions and stable-segment translation
 
-A course project being built to help English-comfortable listeners follow bilingual Indonesian-English lectures, presentations, and discussions.
-
-[Project context](./docs/PROJECT_CONTEXT.md) · [Collaboration guide](./docs/COLLABORATION.md) · [Source of truth](./docs/SOURCE_OF_TRUTH.md)
+[Product requirements](./PRD.md) · [Architecture](./ARCHITECTURE.md) · [Architecture essentials](./ARCHITECTURE-ESSETIALS.md) · [Collaboration](./docs/COLLABORATION.md)
 
 </div>
 
-> **Project status: In progress.** The repository currently contains the agreed product scope, collaboration guidance, and a project icon. Application code, UI screenshots, evaluation charts, datasets, model weights, and measured results are not available yet.
+> **Project status: scaffolded, not feature-complete.** No model runtime, microphone UI, measured result, user study, dataset, model weight, or benchmark is included yet.
 
-## Overview
+## What Lingua is building
 
-Lingua is planned as a local, real-time Indonesian-English speech recognition and translation application for bilingual listening contexts. It will capture microphone audio continuously, show partial or updated captions while speech continues, indicate the likely source language, and translate only stable caption segments when the selected output language differs.
+Lingua is a local application for following multilingual lectures, presentations, and discussions with live captions. It processes microphone audio locally, shows changing captions while a person speaks, and translates only stable caption segments so translation cannot delay caption updates.
 
-The project serves both Deep Learning and Speech Recognition final-project requirements. Its primary research contribution is Indonesian ASR fine-tuning, evaluated fairly against a pretrained baseline. Its product contribution is a local, responsive microphone workflow rather than post-recording transcription or a hosted speech-recognition API.
+The selected multilingual ASR model may expose up to 99 candidate languages. This is not a claim of equal support. Each language must pass user-need, legal-data, accuracy, latency, and local-runtime gates before it is marked Supported. Indonesian fine-tuning remains the core Deep Learning study.
 
-## Planned Product Experience
-
-- Select Indonesian or English as the output language.
-- Start a local microphone session with continuous audio capture.
-- Read partial or updated captions before the speaker finishes.
-- Review source-language evidence, or override an uncertain language state.
-- Receive translation only after a caption segment stabilizes.
-- Stop the session and review the final transcript, translation, and latency summary.
-
-## Planned Workflow
-
-This flow is the agreed implementation target, not a claim that the application is already running.
-
-```mermaid
-flowchart LR
-    A["Microphone audio"] --> B["Overlapping audio chunks"]
-    B --> C["Local ASR"]
-    C --> D["Partial or updated captions"]
-    D --> E["Caption stabilizer"]
-    E --> F{"Source differs from output?"}
-    F -- "Yes" --> G["Local translation"]
-    F -- "No" --> H["Final transcript"]
-    G --> I["Final transcript and translation"]
-    H --> I
-```
-
-## Technical Direction
-
-| Area | Current plan |
-| --- | --- |
-| Speech recognition | A locally downloaded open-source multilingual Whisper model or compatible local runtime |
-| Deep Learning contribution | Fine-tune Indonesian ASR and compare it with a pretrained baseline on separate held-out data |
-| Translation | A local open-source model, such as NLLB, used only for stable segments |
-| Real-time behavior | Short overlapping microphone chunks, a bounded background queue, and caption updates that do not wait for translation |
-| Languages | Indonesian and English |
-| Evaluation | Word Error Rate (WER), latency or real-time factor, qualitative error analysis, and consent-aware target-user feedback |
-
-These are project decisions documented in [PROJECT_CONTEXT.md](./docs/PROJECT_CONTEXT.md). They are not implementation or performance claims.
-
-## Repository Structure
+## Current scaffold
 
 ```text
 .
-├── assets/
-│   └── lingua-icon.svg          # Project icon
-├── data/
-│   └── README.md                # Data-handling notes
-├── docs/
-│   ├── AI_USAGE_LOG_TEMPLATE.md
-│   ├── COLLABORATION.md
-│   ├── PROJECT_CONTEXT.md
-│   └── SOURCE_OF_TRUTH.md
-├── models/
-│   └── .gitkeep
-├── AGENTS.md                    # Repository workflow and contribution rules
-└── README.md
+├── PRD.md
+├── ARCHITECTURE.md
+├── ARCHITECTURE-ESSETIALS.md
+├── configs/                     # Versioned example/runtime configuration
+├── data/                        # Documentation and ignored data roots
+├── experiments/                 # Experiment code/provenance guidance
+├── src/lingua/
+│   ├── domain/                  # Framework-free shared models
+│   ├── application/             # Future orchestration
+│   ├── ports/                   # Future local adapter interfaces
+│   ├── infrastructure/          # Future local adapters
+│   └── ui/                      # Future desktop presentation
+├── tests/                       # Domain behavior tests
+├── models/                      # Ignored downloaded model weights
+└── docs/                        # Course, workflow, and AI-use references
 ```
 
-## Run Locally
+## Development status
 
-Not available yet. The repository does not currently include application source code, a dependency manifest, or a verified startup command. Setup instructions will be added together with the first reproducible local application milestone.
+Data models, language status vocabulary, dependency extras, configuration shape, ignore rules, and domain tests exist. Audio capture, ASR adapters, caption stabilization, translation, database repositories, and UI are intentionally not implemented yet.
 
-## Testing and Validation
+## Next milestone
 
-No automated tests, application screenshots, model benchmarks, or measured user-study results are available yet. Future validation must use real, reproducible evidence and will record:
+Build smallest executable vertical slice: local microphone capture, one local ASR runtime, visible partial/revised captions, bounded queue behavior, and reproducible timing record. Do not add translation or extra language support before that slice works and is measured.
 
-- pretrained and fine-tuned ASR WER on held-out data;
-- latency, response time, or real-time factor with hardware and chunk settings;
-- errors involving noise, speed, accents, code switching, technical terms, names, and microphone quality;
-- at least five consent-aware target-user sessions with anonymized feedback.
+## Course and evidence rules
 
-## Current Limitations
-
-- No working microphone application or user interface has been committed.
-- No local ASR or translation runtime has been integrated.
-- No legal dataset preparation record, trained checkpoint, or model comparison is available.
-- No measured accuracy, latency, or user-feedback result can be claimed.
-
-## Next Milestones
-
-1. Add a reproducible local application foundation with continuous microphone capture.
-2. Integrate local ASR with visible partial or updated captions.
-3. Add stable-segment local translation and source-language controls.
-4. Document legal data preparation, baseline evaluation, and Indonesian ASR fine-tuning.
-5. Run reproducible performance tests and consent-aware target-user sessions.
-
-## Data, Attribution, and License
-
-No dataset, model weight, checkpoint, raw recording, or participant feedback is committed to this repository. The planned evaluation must document each dataset's license, source, split, model/runtime settings, hardware, command, and output location before results are trusted.
-
-See [SOURCE_OF_TRUTH.md](./docs/SOURCE_OF_TRUTH.md) for the official-course criteria locations and [COLLABORATION.md](./docs/COLLABORATION.md) for the repository content policy.
+Local ASR, real-time partial captions, reproducible evaluation, and real target-user testing are required. See `PRD.md`, `ARCHITECTURE.md`, and `docs/PROJECT_CONTEXT.md`. Report only real evidence and record material AI use in `docs/AI_USAGE_LOG_TEMPLATE.md`.

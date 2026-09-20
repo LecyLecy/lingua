@@ -1,0 +1,20 @@
+{
+  "catalogue_version": 1,
+  "model_candidate_limit": 99,
+  "profiles": [
+    {
+      "tag": "id",
+      "display_name": "Indonesian",
+      "asr_status": "evaluation",
+      "translation_status": "evaluation",
+      "evidence_note": "Core Indonesian ASR fine-tuning and evaluation language."
+    },
+    {
+      "tag": "en",
+      "display_name": "English",
+      "asr_status": "evaluation",
+      "translation_status": "evaluation",
+      "evidence_note": "Initial bilingual listening evaluation language."
+    }
+  ]
+}
