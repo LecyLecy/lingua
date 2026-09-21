@@ -45,6 +45,7 @@ Before reading or extracting supported documents, use MarkItDown with `py -m mar
 
 ## Code and data rules
 
+- Never use em dashes in repository documentation, code comments, commits, or messages written for this project. Use commas, parentheses, colons, or separate sentences instead.
 - Keep domain models framework-free under `src/lingua/domain/`.
 - Put orchestration in `src/lingua/application/`, interfaces in `src/lingua/ports/`, local adapters in `src/lingua/infrastructure/`, and presentation in `src/lingua/ui/`.
 - Do not let UI code perform model inference or database writes directly.
