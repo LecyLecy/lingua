@@ -4,13 +4,13 @@
 
 Lingua is a local real-time multilingual speech-recognition and optional stable-segment translation application for people following lectures, presentations, meetings, and discussions. It captures microphone audio continuously, displays partial or revised captions during speech, exposes local ASR language evidence, and translates only finalized segments.
 
-`PRD.md` is the detailed product source of truth. The selected pretrained multilingual ASR model may offer up to 99 candidate language labels. This is a discovery and evaluation catalogue, not a blanket product-support claim. Indonesian is the required fine-tuning and research language; English and Indonesian are initial evaluation priorities.
+`PRD.md` is the detailed product source of truth. At least three local pretrained multilingual ASR candidates will be benchmarked and one measured winner selected for deployment. Candidate models may offer up to 99 language labels. This is a discovery and evaluation catalogue, not a blanket product-support claim. Indonesian is the required fine-tuning and research language; English and Indonesian are initial evaluation priorities.
 
 ## Shared course purpose
 
 | Course | Main contribution | Evidence expected |
 | --- | --- | --- |
-| Deep Learning | Fine-tune Indonesian ASR and compare fairly with pretrained baseline. | Legal data, separate splits, training setup, at least two relevant experimental conditions beyond baseline, evaluation, analysis, working system. |
+| Deep Learning | Compare multiple pretrained local ASR candidates, select measured winner, then fine-tune it for Indonesian. | Legal data, shared held-out protocol, candidate-selection record, separate splits, training setup, at least two relevant fine-tuning conditions beyond baseline, evaluation, analysis, working system. |
 | Speech Recognition | Local real-time microphone ASR application for real user problem. | Partial captions during speech, no hosted ASR API, WER plus responsiveness evidence, error analysis, and real target-user testing. |
 
 ## Course-aligned flow
@@ -40,7 +40,7 @@ A candidate language becomes Supported only after documented user need, legal ev
 
 - Working local application with microphone input, live captions, local ASR, language state, manual override, and final summary.
 - Reproducible code, dependency setup, model/runtime settings, and experiment scripts.
-- Dataset license/preparation notes, Indonesian baseline and fine-tuning records, separate splits, and held-out evaluation.
+- Dataset license/preparation notes, multiple pretrained-candidate records, Indonesian baseline and fine-tuning records, separate splits, and shared held-out evaluation.
 - WER plus real-time performance evidence, qualitative errors, and limitations.
 - Consent-aware target-user sessions with anonymized feedback linked to technical findings.
 - Required report, demo, repository, AI usage log, and AI declaration.

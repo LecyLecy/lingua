@@ -30,8 +30,8 @@ Canonical product requirements live in `PRD.md`. Quick non-negotiable decisions 
 | Language/runtime | Python 3.11+ | Strong local audio and ML ecosystem; one runtime for application and experiments. |
 | Desktop UI | PySide6 | Native local application with accessible widgets and no required web server. |
 | Audio capture | `sounddevice` plus NumPy | Direct microphone stream and lightweight sample buffering. |
-| ASR baseline runtime | `faster-whisper` with locally stored multilingual Whisper-compatible weights | Local inference and streaming-friendly model sizes. |
-| Fine-tuning/experiments | PyTorch, Transformers, Datasets, Evaluate | Reproducible Indonesian ASR training and analysis. |
+| ASR selection runtime | `faster-whisper` with locally stored multilingual Whisper-compatible weights | Compare several local pretrained candidates under one runtime and measurement protocol. |
+| Fine-tuning/experiments | PyTorch, Transformers, Datasets, Evaluate | Select winner from pretrained candidates, then run reproducible Indonesian fine-tuning and analysis. |
 | Translation runtime | Local CTranslate2-compatible NLLB-class model, only for stable text | Separate worker prevents translation from delaying ASR. |
 | Local persistence | SQLite through Python standard library | Small, inspectable storage for settings, final segments, and run metadata. |
 | Tests | `unittest` initially; add `pytest` only when fixtures justify it | Keeps scaffold executable without a test framework dependency. |
@@ -165,7 +165,27 @@ The language catalogue is configuration and evidence, not a static claim copied 
 
 Audio is processed locally and held only for inference buffers unless user later explicitly opts into recording. Any future recording feature requires a separate PRD and consent design; it is not covered by this architecture.
 
-## 10. Evaluation architecture
+## 10. Pretrained model selection and fine-tuning
+
+Lingua does not choose a deployment model from model-card claims, parameter count, or language count. It runs a two-stage experiment defined in `configs/asr_benchmark.example.json`.
+
+### Stage A: pretrained candidate benchmark
+
+- Benchmark at least three independently versioned, locally runnable pretrained multilingual ASR candidates.
+- Start with Whisper-compatible `base`, `small`, and `medium` profiles. These are planned candidates, not a claim that all will fit available hardware.
+- Use identical held-out clips, source-language labels, audio preprocessing, chunk duration, overlap, hardware, and measurement code for every candidate.
+- Record WER for Indonesian as primary target language, WER or language-appropriate supplementary metrics for any enabled language, language-evidence accuracy where labels exist, median and p95 caption latency, real-time factor, peak memory, runtime/version, licence, and failure cases.
+- A candidate is ineligible if it requires a hosted ASR API, lacks acceptable licence or required language label, cannot produce partial captions, or causes a continuously growing queue in a live session.
+- Rank eligible candidates by Indonesian held-out WER, then p95 end-to-end caption latency, then real-time factor, then peak memory. Keep raw measurements and decision record; do not use an unverified weighted score.
+
+### Stage B: Indonesian fine-tuning
+
+- Fine-tune only the Stage A winner. Its unmodified pretrained checkpoint is the baseline.
+- Run at least two documented fine-tuning conditions beyond baseline, changing a defined variable such as learning rate, frozen layers, augmentation, or training duration.
+- Evaluate each variant on the same held-out Indonesian protocol used in Stage A.
+- The production profile is the best eligible measured result across Stage A candidates and Stage B variants. If fine-tuning worsens latency or accuracy, retain the selected pretrained baseline.
+
+## 11. Evaluation architecture
 
 Experiments must be runnable without the UI and produce provenance-rich outputs.
 
@@ -177,9 +197,9 @@ experiments/        code only; generated runs are ignored
 reports/            curated, anonymized aggregate results with provenance
 ```
 
-Each run records model/runtime version, decoding options, dataset version and split, language, hardware, audio configuration, command, timestamp, WER/CER as applicable, latency/RTF, sample errors, and output path. Training/validation/test partition must remain separate. Indonesian baseline and fine-tuned variants must share a held-out evaluation protocol.
+Each run records candidate id, model/runtime version, checkpoint source and licence, decoding options, dataset version and split, language, hardware, audio configuration, command, timestamp, WER/CER as applicable, median/p95 latency, RTF, peak memory, queue degradation, sample errors, and output path. Training/validation/test partition must remain separate. All pretrained candidates and Indonesian fine-tuned variants must share the same held-out evaluation protocol.
 
-## 11. Test strategy
+## 12. Test strategy
 
 | Layer | Tests |
 | --- | --- |
@@ -190,7 +210,7 @@ Each run records model/runtime version, decoding options, dataset version and sp
 | Evaluation | Fixed held-out samples, noise/pace/device conditions, qualitative error review. |
 | User study | Consent-aware task completion and anonymized feedback tied to observed technical behavior. |
 
-## 12. Deliberate exclusions and anti-overengineering decisions
+## 13. Deliberate exclusions and anti-overengineering decisions
 
 - No microservices, web API, message broker, cloud queue, or distributed database. One local application is enough.
 - No automatic language-identification model in addition to ASR language evidence for first milestone.
@@ -198,16 +218,16 @@ Each run records model/runtime version, decoding options, dataset version and sp
 - No custom multilingual fine-tuning programme for 99 languages. Research focus remains Indonesian ASR.
 - No translation of partial captions and no database persistence for every revision.
 
-## 13. Open decisions, triggered only by evidence
+## 14. Open decisions, triggered only by evidence
 
 | Decision | Evidence needed |
 | --- | --- |
-| Exact Whisper-compatible model size/runtime | Measured WER, latency/RTF, memory, and hardware fit. |
+| Final deployed ASR model | Candidate-benchmark gate, WER, p95 latency, RTF, peak memory, licence, and hardware fit. |
 | Exact chunk duration and overlap | Boundary-word error and responsiveness tests. |
 | Supported language list | Legal data, use case, per-language measurements, local runtime test. |
 | Translation model/pairs | Local memory/latency measurement and output evaluation. |
 | Transcript history retention | User need, privacy review, and storage behavior test. |
 
-## 14. Architecture review: likely breakpoints
+## 15. Architecture review: likely breakpoints
 
-Most likely failures are slower-than-real-time inference, model memory pressure, audio-device instability, overlap duplication, code switching, non-Latin-script metric mistakes, unsupported translation pairs, and unrepresentative language evaluation. Architecture mitigates these with bounded queues, typed status, transcript-first behavior, manual override, language-specific metric documentation, and explicit restriction states. It does not claim these mitigations solve every failure before measurement.
+Most likely failures are a high-accuracy candidate that cannot meet live latency, model memory pressure, audio-device instability, overlap duplication, code switching, non-Latin-script metric mistakes, unsupported translation pairs, and unrepresentative language evaluation. Architecture mitigates these with model eligibility gates, bounded queues, typed status, transcript-first behavior, manual override, language-specific metric documentation, and explicit restriction states. It does not claim these mitigations solve every failure before measurement.

@@ -1,0 +1,61 @@
+{
+  "protocol_version": 1,
+  "purpose": "Pretrained local ASR candidate selection before Indonesian fine-tuning.",
+  "candidate_models": [
+    {
+      "id": "whisper-base",
+      "family": "whisper",
+      "checkpoint": "base",
+      "runtime": "faster-whisper",
+      "status": "planned"
+    },
+    {
+      "id": "whisper-small",
+      "family": "whisper",
+      "checkpoint": "small",
+      "runtime": "faster-whisper",
+      "status": "planned"
+    },
+    {
+      "id": "whisper-medium",
+      "family": "whisper",
+      "checkpoint": "medium",
+      "runtime": "faster-whisper",
+      "status": "planned"
+    }
+  ],
+  "shared_protocol": {
+    "evaluation_split": "held-out, versioned, and never used for training",
+    "audio_preprocessing": "identical per candidate",
+    "chunk_policy": "identical per candidate",
+    "hardware": "same named device and runtime version",
+    "measurements": [
+      "Indonesian WER",
+      "language-appropriate supplementary metric where needed",
+      "median and p95 end-to-end caption latency",
+      "real-time factor",
+      "peak memory",
+      "queue degradation",
+      "qualitative error samples"
+    ]
+  },
+  "eligibility_gates": [
+    "local inference only",
+    "acceptable model licence",
+    "required language label available",
+    "partial captions available",
+    "no continuously growing live-processing backlog"
+  ],
+  "ranking_order": [
+    "lowest Indonesian held-out WER",
+    "lowest p95 end-to-end caption latency",
+    "lowest real-time factor",
+    "lowest peak memory"
+  ],
+  "fine_tuning": {
+    "source_candidate": "Stage A winner only",
+    "target_language": "Indonesian",
+    "minimum_conditions_beyond_baseline": 2,
+    "deployment_rule": "Use best eligible measured result across pretrained candidates and fine-tuned variants."
+  }
+}

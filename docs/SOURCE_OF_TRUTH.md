@@ -25,13 +25,13 @@ These are absolute local paths. The Lingua repository is intentionally stored in
 
 - Official current-year criteria win over older documents.
 - The current project branding is **Lingua**, even if older local notes say LinguaLive.
-- Indonesian ASR fine-tuning is required core Deep Learning work. Selected multilingual ASR model may expose up to 99 candidates; candidates are not automatically supported languages.
+- Indonesian ASR fine-tuning is required core Deep Learning work. Benchmark multiple local pretrained ASR candidates before selecting one for Indonesian fine-tuning and deployment. Candidate language labels up to 99 are not automatically supported languages.
 - Do not change target user, language policy, model direction, or use of external services without documenting decision in `PRD.md` and `ARCHITECTURE.md` and confirming it with project owner.
 
 ## Information that must be recorded before a result is trusted
 
 - Dataset name, license, source link, consent status if applicable, and train/validation/test split.
-- Model name/version, runtime, decoding settings, fine-tuning configuration, and checkpoint selection rule.
+- Candidate model name/version, runtime, checkpoint source and licence, decoding settings, selection result, fine-tuning configuration, and checkpoint selection rule.
 - Hardware, operating system where relevant, chunk duration, overlap, and audio settings.
 - Exact command or reproducible procedure, timestamp, data version, and output file path.
 - Metric definition, evaluation set size, sample errors, and limitations.

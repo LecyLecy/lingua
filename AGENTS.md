@@ -31,8 +31,8 @@ Official course criteria override repository summaries. Direct instructions from
 - ASR runs locally. Never send microphone audio to Google, Azure, Amazon, OpenAI, AssemblyAI, or any hosted ASR API.
 - Show partial or revised captions while speech continues. Recording-then-transcribing is insufficient.
 - Translation is separate local stable-segment feature. It must not delay captions.
-- Selected pretrained model may expose up to 99 ASR candidates. Candidate count is not support, quality, latency, or translation promise.
-- Indonesian ASR fine-tuning and fair comparison against pretrained baseline remain core Deep Learning work.
+- Benchmark at least three local pretrained ASR candidates, select the best eligible measured result, then fine-tune that winner for Indonesian. Candidate count up to 99 is not a support, quality, latency, or translation promise.
+- Compare all candidates on identical held-out data and measurement procedure. Model size, model-card claim, or language count alone can never select deployment model.
 - Language support requires user need, legal data, per-language evaluation, local runtime verification, and documented release status.
 - Do not persist raw user audio by default.
 - Never invent metrics, experiments, participants, feedback, citations, or results.

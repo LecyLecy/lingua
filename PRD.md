@@ -23,7 +23,7 @@ The product solves a listening-comprehension problem, not a general-purpose tran
 
 ## 3. Language policy
 
-Lingua begins with an ASR language catalogue of up to **99 candidate languages** supported by the selected pretrained multilingual ASR model. This is a model-coverage ceiling, not a promise that all 99 languages are accurate, equally fast, or available in every build.
+Lingua begins with an ASR language catalogue of up to **99 candidate languages** exposed by one or more locally runnable pretrained multilingual ASR models. This is a model-coverage ceiling, not a promise that all 99 languages are accurate, equally fast, or available in every build.
 
 Each language has one of four statuses:
 
@@ -41,8 +41,9 @@ Indonesian remains the required fine-tuning and research language for the Deep L
 1. Provide local partial or updated captions during live speech.
 2. Keep captions responsive when translation is slow, unavailable, or disabled.
 3. Make language confidence and uncertainty visible and allow manual override.
-4. Support a disciplined path from up to 99 model candidates to a smaller evidence-backed supported catalogue.
-5. Produce reproducible technical and user evidence for course assessment.
+4. Compare several pretrained local ASR candidates fairly, then deploy only the measured winner that satisfies real-time gates.
+5. Support a disciplined path from up to 99 model candidates to a smaller evidence-backed supported catalogue.
+6. Produce reproducible technical and user evidence for course assessment.
 
 ## 5. Product requirements
 
@@ -58,6 +59,8 @@ Indonesian remains the required fine-tuning and research language for the Deep L
 | PRD-08 | Keep raw microphone audio out of persistent storage by default. | Must |
 | PRD-09 | Show final transcript, translations, and real measured session timing after stop. | Should |
 | PRD-10 | Allow a user to copy or export final text without exporting raw audio. | Should |
+| PRD-11 | Benchmark at least three locally runnable pretrained ASR candidates using the same held-out evaluation protocol. | Must |
+| PRD-12 | Deploy only the eligible candidate or fine-tuned variant with the best recorded selection result. | Must |
 
 ## 6. Functional behavior
 
@@ -104,7 +107,11 @@ A language moves from Candidate or Evaluation to Supported only when its intende
 5. representative error analysis; and
 6. a working local runtime and, where translation is offered, a verified local translation path.
 
-The Indonesian ASR fine-tuning study compares a pretrained baseline with at least two relevant experimental conditions using separate train, validation, and held-out test data. The project also needs real target-user testing with consent-aware, anonymized feedback. No metric, user result, or supported-language claim may be fabricated.
+Model selection has two stages. First, Lingua benchmarks at least three pretrained local ASR candidates with identical held-out data, audio settings, chunk policy, hardware, and measurement procedure. A candidate is eligible only if it is local, legally usable, exposes needed language labels, produces partial captions, and does not accumulate an unbounded live-processing backlog.
+
+Eligible candidates are ranked lexicographically: lowest held-out Indonesian WER first, then lower p95 end-to-end caption latency, then lower real-time factor and peak memory. The final deployed pretrained candidate is the highest-ranked eligible result, not the largest model by assumption. Second, Lingua fine-tunes that selected candidate for Indonesian and compares its original pretrained state with at least two documented fine-tuning conditions. The deployed model is the best eligible result across all compared pretrained and fine-tuned variants.
+
+The project also needs real target-user testing with consent-aware, anonymized feedback. No metric, user result, model winner, or supported-language claim may be fabricated.
 
 ## 9. Explicit non-goals for first release
 
