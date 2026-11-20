@@ -1,0 +1,15 @@
+# Local agent instructions
+AGENTS.md
+.agents/
+
+# Data stays local; keep the dataset guide in Git
+/data/*
+!/data/README.md
+
+# Python, notebook, and download cache
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.venv/
+.env
+.cache/huggingface/
