@@ -13,3 +13,7 @@ __pycache__/
 .venv/
 .env
 .cache/huggingface/
+
+# Checkpoints and generated evaluation results remain local
+/checkpoints/
+/results/

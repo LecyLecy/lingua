@@ -17,10 +17,10 @@ tar -xzf data/en_us/audio/dev.tar.gz -C data/en_us/audio
 tar -xzf data/en_us/audio/test.tar.gz -C data/en_us/audio
 ```
 
-Untuk tiap bahasa, metadata berada di `data/<bahasa>/{train,dev,test}.tsv` dan audio di `data/<bahasa>/audio/{train,dev,test}/`. Hasil preprocessing disimpan di `data/preprocessed/model_a/` atau `model_b/`; buat foldernya jika belum ada. Isi data selain README diabaikan Git.
+Untuk tiap bahasa, metadata berada di `data/<bahasa>/{train,dev,test}.tsv` dan audio di `data/<bahasa>/audio/{train,dev,test}/`. Di Colab, cache fitur Model A disimpan sementara di `/content/lingua_logmel_v1` dan hilang saat runtime diganti. Isi data selain README diabaikan Git.
 
 ## Verifikasi
 
 Sebelum preprocessing, periksa kecocokan audio dan transkrip, file rusak, durasi, jumlah data, dan pemisahan `train`, `dev`, `test` untuk tiap bahasa. Catat masalah dan pengecualian; jangan ubah data asli.
 
-Rasio metadata bawaan train/dev/test: Indonesia **71,3% / 9,7% / 19,0%**; Inggris **71,4% / 10,8% / 17,8%**. Periksa kebocoran antar-split, termasuk kalimat paralel antarbahasa. Angka belum membuktikan audio lengkap.
+Rasio metadata bawaan train/dev/test: Indonesia **71,3% / 9,7% / 19,0%**; Inggris **71,4% / 10,8% / 17,8%**. Audit lokal sebelumnya membaca seluruh 7.259 pasangan; 18 durasi berada di luar batas tinjauan. Jalankan notebook 01 untuk memeriksa data sendiri, termasuk kemungkinan kebocoran dan kalimat paralel antarbahasa.
