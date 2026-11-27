@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f8fd">
+  <title>Lingua — pahami setiap percakapan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Lingua, halaman utama">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M6 17v-2m5 7V10m5 15V7m5 15V10m5 7v-2" stroke="currentColor" stroke-width="2.7" stroke-linecap="round"/></svg></span>
+        <span>lingua<span class="brand-dot">.</span></span>
+      </a>
+      <div class="topbar-right"><span class="status-pill"><span></span> Berjalan lokal</span><span class="top-divider"></span><span class="top-label">Ruang percakapan</span></div>
+    </header>
+
+    <main class="main">
+      <section class="intro" aria-labelledby="page-title">
+        <div><div class="intro-tag"><span class="tag-spark">✳</span> UNTUK PERCAKAPAN YANG LEBIH DEKAT</div><h1 id="page-title">Pahami setiap <span>cerita.</span></h1><p>Dengarkan, baca, dan pahami percakapan<br class="desktop-break"> dalam bahasa yang kamu pilih.</p></div>
+        <div class="intro-illustration" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="bubble bubble-a">Aa</div><div class="bubble bubble-b">文</div><div class="mini-spark">✦</div></div>
+      </section>
+
+      <section class="workspace" aria-label="Pengaturan dan subtitle">
+        <div class="workspace-head"><div><h2>Ruang subtitle</h2><p>Siapkan bahasa, lalu mulai mendengarkan.</p></div><span class="session-badge"><span id="session-dot"></span><span id="session-label">Siap dimulai</span></span></div>
+
+        <div class="language-row">
+          <label class="language-field" for="source-language"><span>BAHASA PEMBICARA</span><span class="select-wrap"><span class="language-icon" id="source-icon" aria-hidden="true">ID</span><select id="source-language"><option value="id">Bahasa Indonesia</option><option value="en">Bahasa Inggris</option></select><span class="chevron" aria-hidden="true">⌄</span></span></label>
+          <button id="swap" class="swap-button" type="button" aria-label="Tukar bahasa pembicara dan terjemahan" title="Tukar bahasa">⇄</button>
+          <label class="language-field" for="target-language"><span>BAHASA TERJEMAHAN</span><span class="select-wrap"><span class="language-icon target-icon" id="target-icon" aria-hidden="true">EN</span><select id="target-language"><option value="en">Bahasa Inggris</option><option value="id">Bahasa Indonesia</option></select><span class="chevron" aria-hidden="true">⌄</span></span></label>
+        </div>
+
+        <div class="caption-stage">
+          <div class="stage-top"><div class="stage-label"><span class="stage-led"></span> TAMPILAN LANGSUNG</div><div class="timer"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span id="timer">00:00</span></div></div>
+          <div class="captions">
+            <div class="caption-block"><div class="caption-label"><span class="caption-indicator"></span> <span id="source-caption-label">SUBTITLE ASLI · INDONESIA</span></div><p id="source-caption" class="caption-placeholder">Kata-kata pembicara akan muncul di sini.</p></div>
+            <div class="caption-rule"></div>
+            <div class="caption-block translated"><div class="caption-label"><span class="caption-indicator"></span> <span id="target-caption-label">TERJEMAHAN · INGGRIS</span></div><p id="target-caption" class="caption-placeholder">Terjemahannya akan muncul di sini.</p></div>
+          </div>
+          <div class="stage-bottom"><div class="sound-indicator"><span class="sound-bars" id="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span id="sound-label">Mikrofon belum aktif</span></div><span class="stage-note">Lingua untuk percakapanmu</span></div>
+        </div>
+
+        <div class="action-row"><div class="action-copy"><span class="action-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 15a3 3 0 0 0 3-3V7a3 3 0 1 0-6 0v5a3 3 0 0 0 3 3Z" stroke="currentColor" stroke-width="1.6"/><path d="M6.5 11.5v.5a5.5 5.5 0 0 0 11 0v-.5M12 17.5V21m-2.5 0h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><div><strong id="action-title">Siap mendengarkan?</strong><p id="action-description">Pastikan mikrofonmu sudah terhubung.</p></div></div><button id="record" class="record-button" type="button"><span class="button-mic" aria-hidden="true">●</span><span id="record-label">Mulai mendengarkan</span></button></div>
+        <div id="notice" class="notice" role="status" aria-live="polite"><span class="notice-icon" aria-hidden="true">i</span><span>Model belum terhubung. Kamu bisa mencoba mikrofon, tetapi subtitle belum tersedia.</span></div>
+      </section>
+
+      <section class="bottom-info" aria-label="Petunjuk penggunaan"><div class="info-item"><span class="info-icon">✦</span><div><strong>Dibuat untuk memahami</strong><p>Ikuti percakapan dengan lebih nyaman.</p></div></div><div class="info-item"><span class="info-icon privacy-icon">◇</span><div><strong>Privasi percakapanmu</strong><p>Audio tidak disimpan pada versi ini.</p></div></div><div class="info-item"><span class="info-icon">◉</span><div><strong>Gunakan mikrofon yang jelas</strong><p>Letakkan perangkat dekat pembicara.</p></div></div></section>
+    </main>
+    <footer><span><span class="footer-mark">✳</span> Lingua</span><span>Untuk setiap cerita yang ingin dipahami.</span></footer>
+  </div>
+</body>
+</html>

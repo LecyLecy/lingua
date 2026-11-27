@@ -16,4 +16,5 @@ __pycache__/
 
 # Checkpoints and generated evaluation results remain local
 /checkpoints/
+/models/
 /results/
