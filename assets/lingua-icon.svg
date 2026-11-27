@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title description">
+  <title id="title">Lingua icon</title>
+  <desc id="description">A speech bubble with live audio waves and a translated caption line.</desc>
+  <defs>
+    <linearGradient id="background" x1="72" y1="48" x2="440" y2="464" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#123B5D"/>
+      <stop offset="1" stop-color="#0A2035"/>
+    </linearGradient>
+    <linearGradient id="signal" x1="166" y1="178" x2="357" y2="329" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#55DDE0"/>
+      <stop offset="1" stop-color="#9CF6D7"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="116" fill="url(#background)"/>
+  <path d="M104 126c0-24.3 19.7-44 44-44h216c24.3 0 44 19.7 44 44v175c0 24.3-19.7 44-44 44H244l-85.8 66.5c-11.6 9-28.2.7-28.2-14v-52.5h-26c-24.3 0-44-19.7-44-44V126Z" fill="#EAF6FA"/>
+  <path d="M164 250v-40M208 281v-102M252 306V154M296 281V179M340 250v-40" stroke="url(#signal)" stroke-width="24" stroke-linecap="round"/>
+  <path d="M164 326h108" stroke="#123B5D" stroke-width="16" stroke-linecap="round"/>
+  <path d="M308 326h40" stroke="#FFB54C" stroke-width="16" stroke-linecap="round"/>
+  <circle cx="374" cy="326" r="8" fill="#FFB54C"/>
+</svg>

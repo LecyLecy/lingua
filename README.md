@@ -1,3 +1,7 @@
+<p align="left">
+  <img src="assets/lingua-icon.svg" alt="Lingua icon" width="72" />
+</p>
+
 # Lingua
 
 Proyek Deep Learning dan Speech Recognition untuk membantu mahasiswa memahami pembicara bahasa Indonesia dan Inggris. Model A dan Model B sudah diuji; aplikasi masih dalam pengembangan.
@@ -20,6 +24,6 @@ Model A dilatih 35 epoch; checkpoint terbaik pada dev adalah epoch 25. Model B d
 
 ## Notebook lokal
 
-Notebook di `notebooks/` memakai data dari `data/`, menyimpan checkpoint di `checkpoints/`, dan menyimpan hasil di `results/`. Untuk memakai checkpoint Colab, salin `best.pt` Model A ke `checkpoints/model_a/` dan checkpoint Model B ke `checkpoints/model_b/whisper_base_lora_v1/`. Notebook 03 dan 04 menyediakan sel instalasi dependensi. Training penuh ditujukan untuk Colab T4; GPU lokal 4 GB mungkin tidak cukup untuk batch yang sama.
+Notebook di `notebooks/` memakai data dari `data/`, menyimpan checkpoint di `checkpoints/`, dan menyimpan hasil di `results/`. Untuk memakai checkpoint Colab, salin `best.pt` Model A ke `checkpoints/model_a/` dan checkpoint Model B ke `checkpoints/model_b/whisper_base_lora_v1/`. Notebook 03 menyediakan sel instalasi dependensi. Training penuh ditujukan untuk Colab T4; GPU lokal 4 GB mungkin tidak cukup untuk batch yang sama.
 
 Untuk menyiapkan Whisper Base dan checkpoint Model B di laptop, ikuti [panduan model lokal](app/README.md#siapkan-model-untuk-integrasi-nanti). Aplikasi saat ini belum menggunakan model tersebut.
